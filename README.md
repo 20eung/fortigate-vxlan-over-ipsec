@@ -4,9 +4,11 @@
 
 <table>
 <tr>
-<td>FG#1</td>
-<td>FG#2</td>
-<td>
+  <td>FG#1</td>
+  <td>FG#2</td>
+</tr>
+<tr>
+  <td>
 
 ```json
 config system interface
@@ -19,8 +21,8 @@ config system interface
   next
 ```
 
-</td>
-<td>
+  </td>
+  <td>
 
 ```json
 config system interface
@@ -33,7 +35,7 @@ config system interface
   next
 ```
 
-</td>
+  </td>
 </tr>
 </table>
 
