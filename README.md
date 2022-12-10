@@ -182,5 +182,116 @@ end
 
 
 
+## 4. VxLAN 인터페이스 설정
+
+<table>
+<tr>
+  <td>FG#1</td>
+  <td>FG#2</td>
+</tr>
+<tr>
+  <td>
+
+```
+config system vxlan
+  edit "vxlan.10"
+    set interface "ipsec"
+    set vni 10
+    set remote-ip "2.2.2.1"
+  next
+  edit "vxlan.20"
+    set interface "ipsec"
+    set vni 20
+    set remote-ip "2.2.2.1"
+  next
+end
+```
+
+  </td>
+  <td>
+
+```
+config system vxlan
+  edit "vxlan.10"
+    set interface "ipsec"
+    set vni 10
+    set remote-ip "2.2.2.2"
+  next
+  edit "vxlan.20"
+    set interface "ipsec"
+    set vni 20
+    set remote-ip "2.2.2.2"
+  next
+end
+```
+
+  </td>
+</tr>
+</table>
+
+
+
+## 5. Switch 인터페이스 설정
+
+<table>
+<tr>
+  <td>FG#1</td>
+  <td>FG#2</td>
+</tr>
+<tr>
+  <td>
+
+```
+config system switch-interface
+  edit "vxlan10"
+    set vdom "root"
+    set member "vxlan10" "vxlan.10"
+    set type switch
+    set intra-switch-policy implicit
+    set mac-ttl 300
+    set span disable
+  next
+  edit "vxlan20"
+    set vdom "root"
+    set member "vxlan20" "vxlan.20"
+    set type switch
+    set intra-switch-policy implicit
+    set mac-ttl 300
+    set span disable
+  next
+end
+```
+
+  </td>
+  <td>
+
+```
+config system switch-interface
+  edit "vxlan10"
+    set vdom "root"
+    set member "vxlan10" "vxlan.10"
+    set type switch
+    set intra-switch-policy implicit
+    set mac-ttl 300
+    set span disable
+  next
+  edit "vxlan20"
+    set vdom "root"
+    set member "vxlan20" "vxlan.20"
+    set type switch
+    set intra-switch-policy implicit
+    set mac-ttl 300
+    set span disable
+  next
+end
+```
+
+  </td>
+</tr>
+</table>
+
+
+
+
 # 참조 링크
 - https://community.fortinet.com/t5/FortiGate/Technical-Tip-VXLAN-over-IPsec-for-multiple-VLANs-using-software/ta-p/195488
