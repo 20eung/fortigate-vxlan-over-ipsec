@@ -5,7 +5,7 @@
 
 ## 1. WAN 인터페이스 설정
 
-<table>
+<table style="width:500">
 <tr>
   <td>FG#1</td>
   <td>FG#2</td>
@@ -47,7 +47,7 @@ end
 
 ## 2. IPsec VPN 터널 설정
 
-<table>
+<table style="width:500">
 <tr>
   <td>FG#1</td>
   <td>FG#2</td>
@@ -130,7 +130,7 @@ end
 
 ## 3. VLAN 인터페이스 설정
 
-<table>
+<table style="width:500">
 <tr>
   <td>FG#1</td>
   <td>FG#2</td>
@@ -187,7 +187,7 @@ end
 
 ## 4. VxLAN 인터페이스 설정
 
-<table>
+<table style="width:500">
 <tr>
   <td>FG#1</td>
   <td>FG#2</td>
@@ -236,7 +236,7 @@ end
 
 ## 5. Switch 인터페이스 설정
 
-<table>
+<table style="width:500">
 <tr>
   <td>FG#1</td>
   <td>FG#2</td>
