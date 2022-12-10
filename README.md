@@ -10,7 +10,7 @@
 <tr>
   <td>
 
-```json
+```
 config system interface
   edit "wan1"
     set vdom "root"
@@ -24,7 +24,7 @@ config system interface
   </td>
   <td>
 
-```json
+```
 config system interface
   edit "wan1"
     set vdom "root"
