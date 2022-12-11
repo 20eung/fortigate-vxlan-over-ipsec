@@ -1,25 +1,27 @@
-variable "name" {
-  description = "VXLAN device or interface name."
-  type        = string
-  default     = null
-}
+### fortios_system_vxlan
+
 
 variable "dstport" {
-  description = "VXLAN destination port (1 - 65535, default = 4789)."
-  type        = string
-  default     = "4789"
+  description = "(optional) 1 - 65535, default = 4789"
+  type        = number
+  default     = null
 }
 
 variable "interface" {
-  description = "Outgoing interface for VXLAN encapsulated traffic."
+  description = "(required)"
   type        = string
-  default     = null
 }
 
 variable "ip_version" {
-  description = "IP version to use for the VXLAN interface and so for communication over the VXLAN. IPv4 or IPv6 unicast or multicast."
+  description = "(required) default=ipv4-unicast"
   type        = string
   default     = "ipv4-unicast"
+}
+
+variable "name" {
+  description = "(optional)"
+  type        = string
+  default     = null
 }
 
 variable "remote_ip" {
@@ -29,12 +31,6 @@ variable "remote_ip" {
 }
 
 variable "vni" {
-  description = "VXLAN network ID"
-  type        = string
-  default     = null
-}
-
-variable "dependson" {
-  type        = string
-  default     = null
+  description = "(required)"
+  type        = number
 }

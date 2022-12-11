@@ -17,6 +17,4 @@ resource "fortios_system_vxlan" "default" {
     ip            = var.remote_ip
   }
   vni             = var.vni
-  
-  depends_on      = [ var.dependson ]
 }
