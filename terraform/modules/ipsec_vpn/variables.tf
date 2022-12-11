@@ -106,6 +106,12 @@ variable "keylifeseconds" {
   default     = "43200"
 }
 
+variable "vdom" {
+  description = "The name of the VDOM."
+  type        = string
+  default     = "root"
+}
+
 variable "ip" {
   type        = string
   default     = null
@@ -126,10 +132,6 @@ variable "tcp_mss" {
   default     = "0"
 }
 
-variable "enable_mtu_override" {
-  type        = string
-  default     = "0"
-}
 variable "mtu_override" {
   type        = string
   default     = "disable"
@@ -139,10 +141,3 @@ variable "mtu" {
   type        = string
   default     = null
 }
-
-variable "vdom" {
-  description = "The name of the VDOM."
-  type        = string
-  default     = "root"
-}
-

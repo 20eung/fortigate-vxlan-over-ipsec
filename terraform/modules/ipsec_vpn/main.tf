@@ -14,7 +14,7 @@ resource "fortios_vpnipsec_phase1interface" "default" {
   keylife           = var.keylife
   mode              = var.mode
   peertype          = var.peertype
-  net_device	    = var.net_device
+  net_device	      = var.net_device
   proposal          = var.proposal_phase1
   dpd               = var.dpd
   dhgrp             = var.dhgrp_phase1
@@ -38,9 +38,7 @@ resource "fortios_vpnipsec_phase2interface" "default" {
   keylifeseconds    = var.keylifeseconds
 }
 
-resource "fortios_system_interface" "mtu_override" {
-    count           = var.enable_mtu_override
-
+resource "fortios_system_interface" "default" {
     name            = var.name
     vdom            = var.vdom
     ip              = var.ip
@@ -49,15 +47,4 @@ resource "fortios_system_interface" "mtu_override" {
     remote_ip       = var.remote_ip
     mtu_override    = var.mtu_override
     mtu             = var.mtu
-}
-
-resource "fortios_system_interface" "default" {
-    count           = var.enable_mtu_override
-
-    name            = var.name
-    vdom            = var.vdom
-    ip              = var.ip
-    allowaccess     = var.allowaccess
-    tcp_mss         = var.tcp_mss
-    remote_ip       = var.remote_ip
 }
