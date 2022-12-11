@@ -8,34 +8,34 @@ terraform {
 
 # IPsec VPN Phase1-interface 설정
 resource "fortios_vpnipsec_phase1interface" "default" {
-  name			        = var.name
-  interface		      = var.interface
+  name              = var.name
+  interface         = var.interface
   ike_version       = var.ike_version
-  keylife		        = var.keylife
-  mode    		      = var.mode
-  peertype		      = var.peertype
-  net_device	      = var.net_device
-  proposal		      = var.proposal_phase1
-  dpd			          = var.dpd
-  dhgrp			        = var.dhgrp_phase1
-  nattraversal		  = var.nattraversal
-  remote_gw		      = var.remote_gw
-  psksecret		      = var.psksecret
-  dpd_retryinterval	= var.dpd_retryinterval
+  keylife           = var.keylife
+  mode              = var.mode
+  peertype          = var.peertype
+  net_device	    = var.net_device
+  proposal          = var.proposal_phase1
+  dpd               = var.dpd
+  dhgrp             = var.dhgrp_phase1
+  nattraversal      = var.nattraversal
+  remote_gw         = var.remote_gw
+  psksecret         = var.psksecret
+  dpd_retryinterval = var.dpd_retryinterval
 }
 
 
 # IPsec VPN Phase2-interface 설정
 resource "fortios_vpnipsec_phase2interface" "default" {
-  name			        = var.name
-  phase1name		    = var.name
-  proposal		      = var.proposal_phase2
-  pfs			          = var.pfs
-  dhgrp			        = var.dhgrp_phase2
-  replay			      = var.replay
-  keepalive			    = var.keepalive
+  name	            = var.name
+  phase1name        = var.name
+  proposal          = var.proposal_phase2
+  pfs               = var.pfs
+  dhgrp             = var.dhgrp_phase2
+  replay            = var.replay
+  keepalive         = var.keepalive
   auto_negotiate    = var.auto_negotiate
-  keylifeseconds	  = var.keylifeseconds
+  keylifeseconds    = var.keylifeseconds
 }
 
 resource "fortios_system_interface" "mtu_override" {
