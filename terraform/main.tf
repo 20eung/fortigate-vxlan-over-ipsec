@@ -30,7 +30,7 @@ module "fg1-vpn" {
  #  keylifeseconds	    = "27000"        # default = 43200
 
     # System Interface 설정
-    vdom                = "root"
+ #  vdom                = "root"
     ip                  = "2.2.1.1 255.255.255.255"
     remote_ip           = "2.2.1.2 255.255.255.252"
     allowaccess         = "ping"         # default = unset allowaccess
