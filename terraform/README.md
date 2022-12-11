@@ -25,19 +25,19 @@ module "fg1-vpn" {
     ### IPsec VPN Phase1-interface 설정
     name                  = "fg1-vpn"
     interface             = "wan1"
-    proposal_phase1       = "aes256-sha1"  # default = aes128-sha256 aes256-sha256 aes128-sha1 aes256-sha1
+    proposal_phase1       = "aes256-sha1"  
     remote_gw             = "1.1.2.2"
     psksecret	          = "PreSharedKey"
     
     ### IPsec VPN Phase2-interface 설정
     proposal_phase2       = "aes256-sha1"
-    auto_negotiate        = "enable"       # default = disable
+    auto_negotiate        = "enable"       
 
     ### System Interface 설정
-    vdom                  = "root"         # default = "root"
+    vdom                  = "root"         
     ip                    = "2.2.1.1 255.255.255.255"
     remote_ip             = "2.2.1.2 255.255.255.252"
-    allowaccess           = "ping"         # default = unset allowaccess
+    allowaccess           = "ping"         
 }
 
 ```
@@ -49,18 +49,18 @@ module "vlan10" {
     source                = "./modules/interface"
 
     name                  = "vlan10"
-    vdom                  = "root"         # default = "root"
+    vdom                  = "root"         
     device_identification = "enable"
     role                  = "lan"
     interface             = "internal1"
-    vlanid                = 10             # range   = 1 - 4094
+    vlanid                = 10             
 }
 
 module "vlan20" {
     source                = "./modules/interface"
 
     name                  = "vlan20"
-    vdom                  = "root"         # default = "root"
+    vdom                  = "root"         
     device_identification = "enable"
     role                  = "lan"
     interface             = "internal1"
@@ -104,7 +104,7 @@ module "vxlan10svi" {
     source                = "./modules/switch-interface"
 
     name                  = "vxlan10"
-    vdom                  = "root"         # default = "root"
+    vdom                  = "root"         
     member                = [ 
       { interface_name    = "vlan10" },
       { interface_name    = "vxlan.10" }
@@ -117,7 +117,7 @@ module "vxlan20svi" {
     source                = "./modules/switch-interface"
 
     name                  = "vxlan20"
-    vdom                  = "root"         # default = "root"
+    vdom                  = "root"         
     member                = [ 
       { interface_name    = "vlan20" },
       { interface_name    = "vxlan.20" }
