@@ -27,7 +27,7 @@ module "fg1-vpn" {
  #  replay              = "enable"       # default = enable
  #  keepalive           = "disable"      # default = disable
     auto_negotiate      = "enable"       # default = disable
- #  keylifeseconds	    = "27000"        # default = 43200
+ #  keylifeseconds      = "27000"        # default = 43200
 
     ### System Interface 설정
     vdom                = "root"         # default = "root"
