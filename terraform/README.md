@@ -1,8 +1,8 @@
 # Terraform Source
 
-```
-# filename: main.tf
+## 1. Terraform Provider
 
+```
 terraform {
     required_providers {
       fortios   = {
@@ -13,7 +13,11 @@ terraform {
 
 provider "fortios" { }
 
+```
 
+## 2. IPsec VPN Module
+
+```
 module "fg1-vpn" {
 
     source                = "./modules/ipsec_vpn"
@@ -36,6 +40,11 @@ module "fg1-vpn" {
     allowaccess           = "ping"         # default = unset allowaccess
 }
 
+```
+
+## 3. VLAN Module
+
+```
 module "vlan10" {
     source                = "./modules/interface"
 
@@ -57,6 +66,12 @@ module "vlan20" {
     interface             = "internal1"
     vlanid                = 20             # range   = 1 - 4094
 }
+
+```
+
+## 4. VXVLAN Module
+
+```
 
 module "vxlan10" {
     source                = "./modules/vxlan"
@@ -80,6 +95,11 @@ module "vxlan20" {
     depends_on            = [ module.vlan20 ]
 }
 
+```
+
+## 5. Switch Interface Module
+
+```
 module "vxlan10svi" {
     source                = "./modules/switch-interface"
 
