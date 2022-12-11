@@ -62,3 +62,23 @@ module "vlan20" {
     interface             = "internal1"
     vlanid                = "20"           # range   = 1 - 4094
 }
+
+module "vxlan10" {
+    source                = "./modules/vxlan"
+
+    name                  = "vxlan.10"
+    interface             = "fg1-vpn"
+    vni                   = "10"
+    remote_ip             = "2.2.1.2"
+    dependson             = "fortios_system_interface.vlan10"
+}
+
+module "vxlan20" {
+    source                = "./modules/vxlan"
+
+    name                  = "vxlan.20"
+    interface             = "fg1-vpn"
+    vni                   = "20"
+    remote_ip             = "2.2.1.2"
+    dependson             = "fortios_system_interface.vlan20"
+}
