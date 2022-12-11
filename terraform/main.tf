@@ -86,7 +86,7 @@ module "vxlan20" {
 }
 
 module "vxlan10svi" {
-    source                = "./modules/switch-interface"
+    source                = "./modules/switch_interface"
 
     name                  = "vxlan10"
     vdom                  = "root"         # default = "root"
@@ -103,7 +103,7 @@ module "vxlan10svi" {
 }
 
 module "vxlan20svi" {
-    source                = "./modules/switch-interface"
+    source                = "./modules/switch_interface"
 
     name                  = "vxlan20"
     vdom                  = "root"         # default = "root"
