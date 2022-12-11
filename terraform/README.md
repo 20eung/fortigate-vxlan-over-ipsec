@@ -64,7 +64,7 @@ module "vlan20" {
     device_identification = "enable"
     role                  = "lan"
     interface             = "internal1"
-    vlanid                = 20             # range   = 1 - 4094
+    vlanid                = 20             
 }
 
 ```
