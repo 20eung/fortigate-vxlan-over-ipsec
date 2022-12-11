@@ -14,7 +14,7 @@ resource "fortios_vpnipsec_phase1interface" "default" {
   keylife           = var.keylife
   mode              = var.mode
   peertype          = var.peertype
-  net_device	      = var.net_device
+  net_device        = var.net_device
   proposal          = var.proposal_phase1
   dpd               = var.dpd
   dhgrp             = var.dhgrp_phase1
