@@ -72,7 +72,6 @@ module "vlan20" {
 ## 4. VXVLAN Module
 
 ```
-
 module "vxlan10" {
     source                = "./modules/vxlan"
 
