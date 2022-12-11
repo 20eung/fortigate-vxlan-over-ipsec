@@ -248,7 +248,7 @@ end
 config system switch-interface
   edit "vxlan10"
     set vdom "root"
-    set member "vxlan10" "vxlan.10"
+    set member "vlan10" "vxlan.10"
     set type switch
     set intra-switch-policy implicit
     set mac-ttl 300
@@ -256,7 +256,7 @@ config system switch-interface
   next
   edit "vxlan20"
     set vdom "root"
-    set member "vxlan20" "vxlan.20"
+    set member "vlan20" "vxlan.20"
     set type switch
     set intra-switch-policy implicit
     set mac-ttl 300
@@ -272,7 +272,7 @@ end
 config system switch-interface
   edit "vxlan10"
     set vdom "root"
-    set member "vxlan10" "vxlan.10"
+    set member "vlan10" "vxlan.10"
     set type switch
     set intra-switch-policy implicit
     set mac-ttl 300
@@ -280,7 +280,7 @@ config system switch-interface
   next
   edit "vxlan20"
     set vdom "root"
-    set member "vxlan20" "vxlan.20"
+    set member "vlan20" "vxlan.20"
     set type switch
     set intra-switch-policy implicit
     set mac-ttl 300
