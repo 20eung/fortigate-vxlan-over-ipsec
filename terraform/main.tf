@@ -119,3 +119,17 @@ module "vxlan20svi" {
 
     depends_on            = [ module.vxlan20 ]
 }
+
+module "llcf_wan1" {
+    source                = "./modules/interface"
+
+    name                  = "wan1"
+    vdom                  = "root"
+
+    fail_detect           = "enable"
+    fail_detect_option    = "link-down"
+    fail_alert_method     = "link-down"
+    fail_alert_interfaces = [
+        { name            = "internal7" }
+    ]
+}

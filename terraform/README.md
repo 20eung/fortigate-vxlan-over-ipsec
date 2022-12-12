@@ -12,7 +12,6 @@ terraform {
 }
 
 provider "fortios" { }
-
 ```
 
 ## 2. IPsec VPN Module
@@ -39,7 +38,6 @@ module "fg1-vpn" {
     remote_ip             = "2.2.1.2 255.255.255.252"
     allowaccess           = "ping"         
 }
-
 ```
 
 ## 3. VLAN Module
@@ -66,7 +64,6 @@ module "vlan20" {
     interface             = "internal1"
     vlanid                = 20             
 }
-
 ```
 
 ## 4. VXVLAN Module
@@ -93,7 +90,6 @@ module "vxlan20" {
 
     depends_on            = [ module.vlan20 ]
 }
-
 ```
 
 ## 5. Switch Interface Module
@@ -123,5 +119,39 @@ module "vxlan20svi" {
     ]
 
     depends_on            = [ module.vxlan20 ]
+}
+```
+
+## 6. LLCF Module
+
+```
+module "llcf_wan1" {
+    source                = "./modules/interface"
+
+    name                  = "wan1"
+    vdom                  = "root"         
+    fail_detect           = "enable"
+    fail_detect_option    = "link-down"
+    fail_alert_method     = "link-down"
+    fail_alert_interface  = [
+        { name            = "internal1" }
+    ]    
+
+    depends_on             = [ module.vlan10 ]
+}
+
+module "llcf_internal1" {
+    source                = "./modules/interface"
+
+    name                  = "internal7"
+    vdom                  = "root"         
+    fail_detect           = "enable"
+    fail_detect_option    = "link-down"
+    fail_alert_method     = "link-down"
+    fail_alert_interface  = [
+        { name            = "wan1" }
+    ]    
+
+    depends_on             = [ module.vlan10 ]
 }
 ```

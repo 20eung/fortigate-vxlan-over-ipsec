@@ -16,6 +16,40 @@ variable "device_identification" {
   default     = null
 }
 
+variable "fail_action_on_extender" {
+  description = "(optional)"
+  type        = string
+  default     = null
+}
+
+variable "fail_alert_interfaces" {
+  description = "nested block: NestingList, min items: 0, max items: 0"
+  type = set(object(
+    {
+      name = string
+    }
+  ))
+  default = []
+}
+
+variable "fail_alert_method" {
+  description = "(optional)"
+  type        = string
+  default     = null
+}
+
+variable "fail_detect" {
+  description = "(optional)"
+  type        = string
+  default     = null
+}
+
+variable "fail_detect_option" {
+  description = "(optional)"
+  type        = string
+  default     = null
+}
+
 variable "interface" {
   description = "(optional)"
   type        = string
