@@ -198,12 +198,12 @@ end
 ```
 config system vxlan
   edit "vxlan.10"
-    set interface "ipsec"
+    set interface "fg1-vpn"
     set vni 10
     set remote-ip "2.2.2.1"
   next
   edit "vxlan.20"
-    set interface "ipsec"
+    set interface "fg1-vpn"
     set vni 20
     set remote-ip "2.2.2.1"
   next
@@ -216,12 +216,12 @@ end
 ```
 config system vxlan
   edit "vxlan.10"
-    set interface "ipsec"
+    set interface "fg2-vpn"
     set vni 10
     set remote-ip "2.2.2.2"
   next
   edit "vxlan.20"
-    set interface "ipsec"
+    set interface "fg2-vpn"
     set vni 20
     set remote-ip "2.2.2.2"
   next
