@@ -294,6 +294,63 @@ end
 </table>
 
 
+## 6. LLCF 설정
+
+LLCF(Link Loss Carry Forward)는 link 상태를 감지하여 회선의 양 끝단 link를 up 또는 down 시키는 역할을 합니다.
+
+wan1 인터페이스 상태를 감지하여 internal1 인터페이스를 up 또는 down 시킵니다. 또는
+
+internal1 인터페이스 상태를 감지하여 wan1 인터페이스를 up 또는 down 시킵니다.
+
+
+<table>
+<tr>
+  <td>FG#1</td>
+  <td>FG#2</td>
+</tr>
+<tr>
+  <td>
+
+```
+config system interface
+  edit "wan1"
+    set fail-detect enable
+    set fail-detect-option link-down
+    set fail-alert-method link-down
+    set fail-alert-interface internal1
+  next
+  edit "internal1"
+    set fail-detect enable
+    set fail-detect-option link-down
+    set fail-alert-method link-down
+    set fail-alert-interface wan1
+  next
+end
+```
+
+  </td>
+  <td>
+
+```
+config system interface
+  edit "wan1"
+    set fail-detect enable
+    set fail-detect-option link-down
+    set fail-alert-method link-down
+    set fail-alert-interface internal1
+  next
+  edit "internal1"
+    set fail-detect enable
+    set fail-detect-option link-down
+    set fail-alert-method link-down
+    set fail-alert-interface wan1
+  next
+end
+```
+
+  </td>
+</tr>
+</table>
 
 
 ### 참조 링크
