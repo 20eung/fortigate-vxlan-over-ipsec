@@ -49,7 +49,7 @@ module "fg1-vpn" {
 module "fg1-vpn-to-wan1" {
     source                = "../modules/firewall_policy"
 
-    name                  = "fg1-vpn-to-wan2"
+    name                  = "fg1-vpn-to-wan1"
     srcintf               = [
       { name              = "fg1-vpn" }
     ]
@@ -80,7 +80,7 @@ module "vlan10" {
     vdom                  = "root"         # default = "root"
     device_identification = "enable"
     role                  = "lan"
-    interface             = "internal1"
+    interface             = "internal7"
     vlanid                = 10             # range   = 1 - 4094
 }
 
@@ -91,7 +91,7 @@ module "vlan20" {
     vdom                  = "root"         # default = "root"
     device_identification = "enable"
     role                  = "lan"
-    interface             = "internal1"
+    interface             = "internal7"
     vlanid                = 20             # range   = 1 - 4094
 }
 
