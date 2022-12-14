@@ -353,7 +353,7 @@ end
 </table>
 
 
-## 6. LLCF 설정 (2)
+## 7. LLCF 설정 (2)
 
 VPN Tunnel 상태를 감지하여 internal1 인터페이스를 up 또는 down 시킵니다.
 

@@ -179,7 +179,6 @@ module "vpn-down-llcf" {
     action_type           = "cli-script"
     required              = "enable"
     script                = "config system interface\nedit internal1\nset status down\nend"
-#   script                = "config system interface"
 
     # system automation-trigger
     event_type            = "event-log"
@@ -208,7 +207,6 @@ module "vpn-up-llcf" {
     action_type           = "cli-script"
     required              = "enable"
     script                = "config system interface\nedit internal1\nset status up\nend"
-#   script                = "config system interface"
 
     # system automation-trigger
     event_type            = "event-log"
