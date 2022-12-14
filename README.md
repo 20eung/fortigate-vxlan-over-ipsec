@@ -446,3 +446,4 @@ end
 
 ### 참조 링크
 - https://community.fortinet.com/t5/FortiGate/Technical-Tip-VXLAN-over-IPsec-for-multiple-VLANs-using-software/ta-p/195488
+- https://github.com/niveklabs/tfwriter/blob/main/fortios/
