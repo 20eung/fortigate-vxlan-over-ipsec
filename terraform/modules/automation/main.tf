@@ -58,4 +58,9 @@ resource "fortios_system_automationstitch" "this" {
       name = destination.value["name"]
     }
   }
+
+  depends_on            = [ 
+    fortios_system_automationaction.this,
+    fortios_system_automationtrigger.this
+  ]
 }

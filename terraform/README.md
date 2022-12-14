@@ -105,7 +105,7 @@ module "vxlan10svi" {
       { interface_name    = "vxlan.10" }
     ]
 
-    depends_on             = [ module.vxlan10 ]
+    depends_on            = [ module.vxlan10 ]
 }
 
 module "vxlan20svi" {
