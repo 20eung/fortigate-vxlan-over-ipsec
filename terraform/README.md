@@ -166,6 +166,10 @@ module "llcf_internal1" {
 
 VPN Tunnel 상태를 감지하여 internal1 인터페이스를 up 또는 down 시킵니다.
 
+FortiOS Event중 Log ID 37138에 해당하는 IPsec connection status changed를 이용합니다.
+
+Log 의 action 필드 값 중 tunnel-down, tunnel-up 만 필터링하여 trigger를 작성합니다.
+
 ```
 module "vpn-down-llcf" {
     source                = "../modules/automation"
