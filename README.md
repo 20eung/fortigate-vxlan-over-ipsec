@@ -294,7 +294,7 @@ end
 </table>
 
 
-## 6. LLCF 설정
+## 6. LLCF 설정 (1)
 
 LLCF(Link Loss Carry Forward)는 link 상태를 감지하여 회선의 양 끝단 link를 up 또는 down 시키는 역할을 합니다.
 
@@ -345,6 +345,93 @@ config system interface
     set fail-alert-method link-down
     set fail-alert-interface wan1
   next
+end
+```
+
+  </td>
+</tr>
+</table>
+
+
+## 6. LLCF 설정 (2)
+
+VPN Tunnel 상태를 감지하여 internal1 인터페이스를 up 또는 down 시킵니다.
+
+<table>
+<tr>
+  <td>FG#1, FG#2</td>
+</tr>
+<tr>
+  <td>
+
+```
+config system automation-action
+   edit "internal1_down"
+        set action-type cli-script
+        set required enable
+        set script "config system interface
+edit internal1
+set status down
+end"
+        set accprofile "api_super_admin"
+    next
+    edit "internal1_up"
+        set action-type cli-script
+        set required enable
+        set script "config system interface
+edit internal1
+set status up
+end"
+        set accprofile "api_super_admin"
+    next
+end
+```
+
+  </td>
+</tr>
+<tr>
+  <td>
+
+```
+config system automation-trigger
+    edit "IPsec_VPN_tunnel_down"
+        set event-type event-log
+        set logid 37138
+        config fields
+            edit 1
+                set name "action"
+                set value "tunnel-down"
+            next
+        end
+    next
+    edit "IPsec_VPN_tunnel_up"
+        set event-type event-log
+        set logid 37138
+        config fields
+            edit 1
+                set name "action"
+                set value "tunnel-up"
+            next
+        end
+    next
+end
+```
+
+  </td>
+</tr>
+<tr>
+  <td>
+
+```
+config system automation-stitch
+    edit "IPsec_VPN_tunnel_down"
+        set trigger "IPsec_VPN_tunnel_down"
+        set action "internal1_down"
+    next
+    edit "IPsec_VPN_tunnel_up"
+        set trigger "IPsec_VPN_tunnel_up"
+        set action "internal1_up"
+    next
 end
 ```
 
