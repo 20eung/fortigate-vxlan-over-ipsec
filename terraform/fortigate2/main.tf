@@ -170,7 +170,7 @@ module "llcf_wan1" {
 }
 */
 
-module "fg2-vpn-down-llcf" {
+module "vpn-down-llcf" {
     source                = "../modules/automation"
 
     # system automation-action
@@ -199,7 +199,7 @@ module "fg2-vpn-down-llcf" {
     ]
 }
 
-module "fg2-vpn-up-llcf" {
+module "vpn-up-llcf" {
     source                = "../modules/automation"
 
     # system automation-action
