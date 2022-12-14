@@ -392,6 +392,7 @@ end
 <tr><td>
 
 ```
+
 config system automation-trigger
     edit "IPsec_VPN_tunnel_down"
         set event-type event-log
@@ -414,6 +415,7 @@ config system automation-trigger
         end
     next
 end
+
 ```
 
 </td></tr>
