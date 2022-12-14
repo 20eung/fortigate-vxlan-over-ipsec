@@ -185,9 +185,9 @@ module "vpn-down-llcf" {
     event_type            = "event-log"
     logid                 = "37138"
     fields                = [{
-      id                = "1"
-      name              = "action"
-      value             = "tunnel-down"
+      id                  = "1"
+      name                = "action"
+      value               = "tunnel-down"
     }]
 
     # system automation-stitch
@@ -215,9 +215,9 @@ module "vpn-up-llcf" {
     event_type            = "event-log"
     logid                 = "37138"
     fields                = [{
-      id                = "1"
-      name              = "action"
-      value             = "tunnel-up"
+      id                  = "1"
+      name                = "action"
+      value               = "tunnel-up"
     }]
 
     # system automation-stitch
