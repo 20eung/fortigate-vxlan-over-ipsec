@@ -446,6 +446,6 @@ end
 
 ### 참조 링크
 
-[VxLAN](https://community.fortinet.com/t5/FortiGate/Technical-Tip-VXLAN-over-IPsec-for-multiple-VLANs-using-software/ta-p/195488 "VXLAN" target="_blank")
+[Link](https://community.fortinet.com/t5/FortiGate/Technical-Tip-VXLAN-over-IPsec-for-multiple-VLANs-using-software/ta-p/195488 "VXLAN" target="_blank")
 
-[Terraform Module](https://github.com/niveklabs/tfwriter/blob/main/fortios/r/ "Terraform Module" target="_blank")
+[Link](https://github.com/niveklabs/tfwriter/blob/main/fortios/r/ "Terraform Module" target="_blank")
