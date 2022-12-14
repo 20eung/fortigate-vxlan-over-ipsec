@@ -446,6 +446,6 @@ end
 
 ### 참조 링크
 
-[Link] (https://community.fortinet.com/t5/FortiGate/Technical-Tip-VXLAN-over-IPsec-for-multiple-VLANs-using-software/ta-p/195488 "VXLAN" target="_blank")
+<a href="https://community.fortinet.com/t5/FortiGate/Technical-Tip-VXLAN-over-IPsec-for-multiple-VLANs-using-software/ta-p/195488" target="_blank">VXLAN</a>
 
 [Link] (https://github.com/niveklabs/tfwriter/blob/main/fortios/r/){target="_blank"}
