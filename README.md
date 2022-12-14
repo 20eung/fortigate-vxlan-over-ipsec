@@ -448,4 +448,4 @@ end
 
 [Link] (https://community.fortinet.com/t5/FortiGate/Technical-Tip-VXLAN-over-IPsec-for-multiple-VLANs-using-software/ta-p/195488 "VXLAN" target="_blank")
 
-[Link] (https://github.com/niveklabs/tfwriter/blob/main/fortios/r/) {target="_blank"}
+[Link] (https://github.com/niveklabs/tfwriter/blob/main/fortios/r/){target="_blank"}
