@@ -362,7 +362,9 @@ FortiOS Event중 Log ID 37138에 해당하는 IPsec connection status changed를
 Log 의 action 필드 값 중 tunnel-down, tunnel-up 만 필터링하여 trigger를 작성합니다.
 
 <table>
+
 <tr><td>FG#1, FG#2</td></tr>
+
 <tr><td>
 
 ```
@@ -409,6 +411,7 @@ end
 ```
 
 </td></tr>
+
 <tr><td>
 
 ```
@@ -459,6 +462,7 @@ end
 ```
 
 </td></tr>
+
 <tr><td>
 
 ```
@@ -485,6 +489,7 @@ end
 ```
 
 </td></tr>
+
 </table>
 
 
