@@ -361,9 +361,9 @@ FortiOS Event중 Log ID 37138에 해당하는 IPsec connection status changed를
 
 Log 의 action 필드 값 중 tunnel-down, tunnel-up 만 필터링하여 trigger를 작성합니다.
 
-<table>    
-<tr><th>FG#1, FG#2</th></tr>    
-<tr><td>    
+<table>
+<tr><th>FG#1, FG#2</th></tr>
+<tr><td>
 ```
 config system automation-action
    edit "internal1_down"
@@ -405,8 +405,8 @@ end"
 end
 
 ```
-</td></tr>    
-<tr><td>    
+</td></tr>
+<tr><td>
 ```
 
 config system automation-trigger
@@ -453,8 +453,8 @@ config system automation-trigger
 end
 
 ```
-</td></tr>    
-<tr><td>    
+</td></tr>
+<tr><td>
 ```
 config system automation-stitch
     edit "internal1_down"
@@ -475,8 +475,8 @@ config system automation-stitch
     next
 end
 ```
-</td></tr>    
-</table>    
+</td></tr>
+</table>
 
 
 ### 참조 링크
