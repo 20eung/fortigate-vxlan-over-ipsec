@@ -366,6 +366,7 @@ Log 의 action 필드 값 중 tunnel-down, tunnel-up 만 필터링하여 trigger
 <tr><td>
 
 ```
+
 config system automation-action
    edit "internal1_down"
         set action-type cli-script
@@ -404,12 +405,14 @@ end"
         set accprofile "api_super_admin"
     next
 end
+
 ```
 
 </td></tr>
 <tr><td>
 
 ```
+
 config system automation-trigger
     edit "internal1_down"
         set event-type event-log
@@ -452,12 +455,14 @@ config system automation-trigger
         end
     next
 end
+
 ```
 
 </td></tr>
 <tr><td>
 
 ```
+
 config system automation-stitch
     edit "internal1_down"
         set trigger "internal1_down"
@@ -476,6 +481,7 @@ config system automation-stitch
         set action "internal1_up"
     next
 end
+
 ```
 
 </td></tr>
