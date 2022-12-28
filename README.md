@@ -463,6 +463,18 @@ end
 
 </td></tr>
 
+
+</table>
+
+
+### 참조 링크
+
+- <a href="https://community.fortinet.com/t5/FortiGate/Technical-Tip-VXLAN-over-IPsec-for-multiple-VLANs-using-software/ta-p/195488" target="_blank">VXLAN</a>
+
+- <a href="https://github.com/niveklabs/tfwriter/blob/main/fortios/r/" target="_blank">Terraform Module</a>
+
+
+
 <tr><td>
 
 ```
@@ -489,12 +501,3 @@ end
 ```
 
 </td></tr>
-
-</table>
-
-
-### 참조 링크
-
-- <a href="https://community.fortinet.com/t5/FortiGate/Technical-Tip-VXLAN-over-IPsec-for-multiple-VLANs-using-software/ta-p/195488" target="_blank">VXLAN</a>
-
-- <a href="https://github.com/niveklabs/tfwriter/blob/main/fortios/r/" target="_blank">Terraform Module</a>
