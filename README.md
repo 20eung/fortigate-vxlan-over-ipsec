@@ -416,6 +416,46 @@ end
 
 ```
 
+config system automation-stitch
+    edit "internal1_down"
+        set trigger "internal1_down"
+        set action "ipsecvpn_down"
+    next
+    edit "internal1_up"
+        set trigger "internal1_up"
+        set action "ipsecvpn_down"
+    next
+    edit "ipsecvpn_down"
+        set trigger "ipsecvpn_down"
+        set action "internal1_down"
+    next
+    edit "ipsecvpn_up"
+        set trigger "ipsecvpn_up"
+        set action "internal1_up"
+    next
+end
+
+```
+
+</td></tr>
+
+
+
+</table>
+
+
+### 참조 링크
+
+- <a href="https://community.fortinet.com/t5/FortiGate/Technical-Tip-VXLAN-over-IPsec-for-multiple-VLANs-using-software/ta-p/195488" target="_blank">VXLAN</a>
+
+- <a href="https://github.com/niveklabs/tfwriter/blob/main/fortios/r/" target="_blank">Terraform Module</a>
+
+
+
+<tr><td>
+
+```
+
 config system automation-trigger
     edit "internal1_down"
         set event-type event-log
@@ -456,45 +496,6 @@ config system automation-trigger
                 set value "tunnel-up"
             next
         end
-    next
-end
-
-```
-
-</td></tr>
-
-
-</table>
-
-
-### 참조 링크
-
-- <a href="https://community.fortinet.com/t5/FortiGate/Technical-Tip-VXLAN-over-IPsec-for-multiple-VLANs-using-software/ta-p/195488" target="_blank">VXLAN</a>
-
-- <a href="https://github.com/niveklabs/tfwriter/blob/main/fortios/r/" target="_blank">Terraform Module</a>
-
-
-
-<tr><td>
-
-```
-
-config system automation-stitch
-    edit "internal1_down"
-        set trigger "internal1_down"
-        set action "ipsecvpn_down"
-    next
-    edit "internal1_up"
-        set trigger "internal1_up"
-        set action "ipsecvpn_down"
-    next
-    edit "ipsecvpn_down"
-        set trigger "ipsecvpn_down"
-        set action "internal1_down"
-    next
-    edit "ipsecvpn_up"
-        set trigger "ipsecvpn_up"
-        set action "internal1_up"
     next
 end
 
