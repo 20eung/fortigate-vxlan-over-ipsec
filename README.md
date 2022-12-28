@@ -361,14 +361,10 @@ FortiOS Event중 Log ID 37138에 해당하는 IPsec connection status changed를
 
 Log 의 action 필드 값 중 tunnel-down, tunnel-up 만 필터링하여 trigger를 작성합니다.
 
-<table>
-
-<tr><th>FG#1, FG#2</th></tr>
-
-<tr><td>
-
+<table>    
+<tr><th>FG#1, FG#2</th></tr>    
+<tr><td>    
 ```
-
 config system automation-action
    edit "internal1_down"
         set action-type cli-script
@@ -409,51 +405,8 @@ end"
 end
 
 ```
-
-</td></tr>
-
-<tr><td>
-
-```
-
-config system automation-stitch
-    edit "internal1_down"
-        set trigger "internal1_down"
-        set action "ipsecvpn_down"
-    next
-    edit "internal1_up"
-        set trigger "internal1_up"
-        set action "ipsecvpn_down"
-    next
-    edit "ipsecvpn_down"
-        set trigger "ipsecvpn_down"
-        set action "internal1_down"
-    next
-    edit "ipsecvpn_up"
-        set trigger "ipsecvpn_up"
-        set action "internal1_up"
-    next
-end
-
-```
-
-</td></tr>
-
-
-
-</table>
-
-
-### 참조 링크
-
-- <a href="https://community.fortinet.com/t5/FortiGate/Technical-Tip-VXLAN-over-IPsec-for-multiple-VLANs-using-software/ta-p/195488" target="_blank">VXLAN</a>
-
-- <a href="https://github.com/niveklabs/tfwriter/blob/main/fortios/r/" target="_blank">Terraform Module</a>
-
-
-
-<tr><td>
-
+</td></tr>    
+<tr><td>    
 ```
 
 config system automation-trigger
@@ -500,5 +453,34 @@ config system automation-trigger
 end
 
 ```
+</td></tr>    
+<tr><td>    
+```
+config system automation-stitch
+    edit "internal1_down"
+        set trigger "internal1_down"
+        set action "ipsecvpn_down"
+    next
+    edit "internal1_up"
+        set trigger "internal1_up"
+        set action "ipsecvpn_down"
+    next
+    edit "ipsecvpn_down"
+        set trigger "ipsecvpn_down"
+        set action "internal1_down"
+    next
+    edit "ipsecvpn_up"
+        set trigger "ipsecvpn_up"
+        set action "internal1_up"
+    next
+end
+```
+</td></tr>    
+</table>    
 
-</td></tr>
+
+### 참조 링크
+
+- <a href="https://community.fortinet.com/t5/FortiGate/Technical-Tip-VXLAN-over-IPsec-for-multiple-VLANs-using-software/ta-p/195488" target="_blank">VXLAN</a>
+
+- <a href="https://github.com/niveklabs/tfwriter/blob/main/fortios/r/" target="_blank">Terraform Module</a>
