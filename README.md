@@ -363,9 +363,9 @@ Log 의 action 필드 값 중 tunnel-down, tunnel-up 만 필터링하여 trigger
 
 <table>
 
-<tr><td colspan="2">FG#1, FG#2</td></tr>
+<tr><th>FG#1, FG#2</th></tr>
 
-<tr><td colspan="2">
+<tr><td>
 
 ```
 
@@ -412,7 +412,7 @@ end
 
 </td></tr>
 
-<tr><td colspan="2">
+<tr><td>
 
 ```
 
@@ -463,7 +463,7 @@ end
 
 </td></tr>
 
-<tr><td colspan="2">
+<tr><td>
 
 ```
 
