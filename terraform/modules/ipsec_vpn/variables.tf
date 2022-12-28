@@ -82,12 +82,22 @@ variable "psksecret" {
   default     = null
 }
 
+variable "remotegw_ddns" {
+  description = "(optional)"
+  type        = string
+  default     = null
+}
+
 variable "remote_gw" {
   description = "(optional)"
   type        = string
   default     = null
 }
 
+variable "type" {
+  description = "(required)"
+  type        = string
+}
 
 ### fortios_vpnipsec_phase2interface
 

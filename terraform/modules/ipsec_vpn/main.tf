@@ -9,6 +9,7 @@ terraform {
 # IPsec VPN Phase1-interface 설정
 resource "fortios_vpnipsec_phase1interface" "default" {
   name              = var.name
+  type              = var.type
   interface         = var.interface
   ike_version       = var.ike_version
   keylife           = var.keylife
@@ -19,6 +20,7 @@ resource "fortios_vpnipsec_phase1interface" "default" {
   dpd               = var.dpd
   dhgrp             = var.dhgrp_phase1
   nattraversal      = var.nattraversal
+  remotegw_ddns     = var.remotegw_ddns
   remote_gw         = var.remote_gw
   psksecret         = var.psksecret
   dpd_retryinterval = var.dpd_retryinterval

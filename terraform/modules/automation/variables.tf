@@ -109,7 +109,6 @@ variable "stitch_name" {
   default     = null
 }
 
-
 variable "trigger" {
   description = "(required)"
   type        = string
