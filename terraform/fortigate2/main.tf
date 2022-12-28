@@ -131,29 +131,6 @@ module "llcf_wan1-internal1" {
 }
 */
 
-module "automation_action_vpn_down" {
-    source                = "../modules/automation/action"
-
-    # system automation-action
-    action_name           = "ipsecvpn_down"
-    accprofile            = "api_super_admin"
-    action_type           = "cli-script"
-    required              = "enable"
-    script                = "config system interface\nedit ipsecvpn\nset status down\nend"
-}
-
-module "automation_action_vpn_up" {
-    source                = "../modules/automation/action"
-
-    # system automation-action
-    action_name           = "ipsecvpn_up"
-    action_type           = "cli-script"
-    delay                 = 5
-    required              = "enable"
-    script                = "config system interface\nedit ipsecvpn\nset status up\nend"
-    accprofile            = "api_super_admin"
-}
-
 module "automation_action_internal1_down" {
     source                = "../modules/automation/action"
 
@@ -174,6 +151,29 @@ module "automation_action_internal1_up" {
     delay                 = 5
     required              = "enable"
     script                = "config system interface\nedit internal1\nset status up\nend"
+    accprofile            = "api_super_admin"
+}
+
+module "automation_action_vpn_down" {
+    source                = "../modules/automation/action"
+
+    # system automation-action
+    action_name           = "ipsecvpn_down"
+    accprofile            = "api_super_admin"
+    action_type           = "cli-script"
+    required              = "enable"
+    script                = "config system interface\nedit ipsecvpn\nset status down\nend"
+}
+
+module "automation_action_vpn_up" {
+    source                = "../modules/automation/action"
+
+    # system automation-action
+    action_name           = "ipsecvpn_up"
+    action_type           = "cli-script"
+    delay                 = 5
+    required              = "enable"
+    script                = "config system interface\nedit ipsecvpn\nset status up\nend"
     accprofile            = "api_super_admin"
 }
 

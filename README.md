@@ -385,6 +385,24 @@ set status up
 end"
         set accprofile "api_super_admin"
     next
+   edit "ipsecvpn_down"
+        set action-type cli-script
+        set required enable
+        set script "config system interface
+edit ipsecvpn
+set status down
+end"
+        set accprofile "api_super_admin"
+    next
+    edit "ipsecvpn_up"
+        set action-type cli-script
+        set required enable
+        set script "config system interface
+edit ipsecvpn
+set status up
+end"
+        set accprofile "api_super_admin"
+    next
 end
 ```
 
@@ -393,7 +411,27 @@ end
 
 ```
 config system automation-trigger
-    edit "IPsec_VPN_tunnel_down"
+    edit "internal1_down"
+        set event-type event-log
+        set logid 20099
+        config fields
+            edit 1
+                set name "msg"
+                set value "Link monitor: Interface internal1 was turned down"
+            next
+        end
+    next
+    edit "internal_up"
+        set event-type event-log
+        set logid 20099
+        config fields
+            edit 1
+                set name "msg"
+                set value "Link monitor: Interface internal1 was turned up"
+            next
+        end
+    next
+    edit "ipsecvpn_down"
         set event-type event-log
         set logid 37138
         config fields
@@ -403,7 +441,7 @@ config system automation-trigger
             next
         end
     next
-    edit "IPsec_VPN_tunnel_up"
+    edit "ipsecvpn_up"
         set event-type event-log
         set logid 37138
         config fields
@@ -421,12 +459,20 @@ end
 
 ```
 config system automation-stitch
-    edit "IPsec_VPN_tunnel_down"
-        set trigger "IPsec_VPN_tunnel_down"
+    edit "internal1_down"
+        set trigger "internal1_down"
+        set action "ipsecvpn_down"
+    next
+    edit "internal1_up"
+        set trigger "internal1_up"
+        set action "ipsecvpn_down"
+    next
+    edit "ipsecvpn_down"
+        set trigger "ipsecvpn_down"
         set action "internal1_down"
     next
-    edit "IPsec_VPN_tunnel_up"
-        set trigger "IPsec_VPN_tunnel_up"
+    edit "ipsecvpn_up"
+        set trigger "ipsecvpn_up"
         set action "internal1_up"
     next
 end
