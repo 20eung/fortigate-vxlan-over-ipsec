@@ -22,25 +22,74 @@ module "fg1-vpn" {
     source                = "./modules/ipsec_vpn"
     
     ### IPsec VPN Phase1-interface 설정
-    name                  = "fg1-vpn"
-    interface             = "wan1"
+    name                  = "ipsecvpn"
+    type                  = "ddns"
+    interface             = "wan2"
     proposal_phase1       = "aes256-sha1"  
-    remote_gw             = "1.1.2.2"
-    psksecret	          = "PreSharedKey"
+    remotegw_ddns         = "fg2.fortiddns.com"
+    psksecret	            = "PreSharedKey"
+    ike_version           = "2"            # default = 1
+    keylife               = 28800          # default = 86400
+    mode                  = "main"         # default = main
+    peertype              = "any"          # default = any
+    net_device	          = "disable"      # default = disable
+    dpd                   = "on-idle"      # default = on-demand  
+    dhgrp_phase1          = "2"            # default = 14 5
+    nattraversal          = "enable"       # default = enable
+    dpd_retryinterval     = "10"           # default = 20
     
     ### IPsec VPN Phase2-interface 설정
     proposal_phase2       = "aes256-sha1"
-    auto_negotiate        = "enable"       
+    auto_negotiate        = "enable"       # default = disable
+    pfs	                  = "enable"       # default = enable
+    dhgrp_phase2          = "2"            # default = 14 5
+    replay                = "enable"       # default = enable
+    keepalive             = "disable"      # default = disable
+    keylifeseconds        = 27000          # default = 43200    
 
     ### System Interface 설정
-    vdom                  = "root"         
+    vdom                  = "root"         # default = "root"
     ip                    = "2.2.1.1 255.255.255.255"
     remote_ip             = "2.2.1.2 255.255.255.252"
-    allowaccess           = "ping"         
+    allowaccess           = "ping"         # default = unset allowaccess
+    tcp_mss               = 1350           # default = 0       
 }
 ```
 
-## 3. VLAN Module
+
+## 3. Firewall Policy Module
+
+```
+module "ipsecvpn-to-wan2" {
+    source                = "../modules/firewall_policy"
+
+    name                  = "ipsecvpn-to-wan1"
+    srcintf               = [
+      { name              = "ipsecvpn" }
+    ]
+    dstintf               =  [
+      { name              = "wan2" }
+    ]
+    srcaddr               = [
+      { name              = "all" }
+    ]
+    dstaddr               = [
+      { name              = "all" }
+    ]
+    action                = "accept"
+    schedule              = "always"
+    service               = [
+      { name              = "ALL" }
+    ]
+    nat                   = "enable"
+    tcp_mss_sender        = "1350"
+    tcp_mss_receiver      = "1350"
+    logtraffic            = "all"
+}
+```
+
+
+## 4. VLAN Module
 
 ```
 module "vlan10" {
@@ -53,20 +102,9 @@ module "vlan10" {
     interface             = "internal1"
     vlanid                = 10             
 }
-
-module "vlan20" {
-    source                = "./modules/interface"
-
-    name                  = "vlan20"
-    vdom                  = "root"         
-    device_identification = "enable"
-    role                  = "lan"
-    interface             = "internal1"
-    vlanid                = 20             
-}
 ```
 
-## 4. VXVLAN Module
+## 5. VXVLAN Module
 
 ```
 module "vxlan10" {
@@ -79,20 +117,9 @@ module "vxlan10" {
 
     depends_on             = [ module.vlan10 ]
 }
-
-module "vxlan20" {
-    source                = "./modules/vxlan"
-
-    name                  = "vxlan.20"
-    interface             = "fg1-vpn"
-    vni                   = 20
-    remote_ip             = "2.2.1.2"
-
-    depends_on            = [ module.vlan20 ]
-}
 ```
 
-## 5. Switch Interface Module
+## 6. Switch Interface Module
 
 ```
 module "vxlan10svi" {
@@ -107,22 +134,9 @@ module "vxlan10svi" {
 
     depends_on            = [ module.vxlan10 ]
 }
-
-module "vxlan20svi" {
-    source                = "./modules/switch-interface"
-
-    name                  = "vxlan20"
-    vdom                  = "root"         
-    member                = [ 
-      { interface_name    = "vlan20" },
-      { interface_name    = "vxlan.20" }
-    ]
-
-    depends_on            = [ module.vxlan20 ]
-}
 ```
 
-## 6. LLCF Module(1)
+## 7. LLCF Module(1)
 
 LLCF(Link Loss Carry Forward)는 link 상태를 감지하여 회선의 양 끝단 link를 up 또는 down 시키는 역할을 합니다.
 
@@ -162,7 +176,7 @@ module "llcf_internal1" {
 }
 ```
 
-## 7. LLCF Module(2)
+## 8. LLCF Module(2)
 
 VPN Tunnel 상태를 감지하여 internal1 인터페이스를 up 또는 down 시킵니다.
 
@@ -170,9 +184,34 @@ FortiOS Event중 Log ID 37138에 해당하는 IPsec connection status changed를
 
 Log 의 action 필드 값 중 tunnel-down, tunnel-up 만 필터링하여 trigger를 작성합니다.
 
+
+### 8.1 Automation - action Module
 ```
-module "vpn-down-llcf" {
-    source                = "../modules/automation"
+module "automation_action_vpn_down" {
+    source                = "../modules/automation/action"
+
+    # system automation-action
+    action_name           = "ipsecvpn_down"
+    accprofile            = "api_super_admin"
+    action_type           = "cli-script"
+    required              = "enable"
+    script                = "config system interface\nedit ipsecvpn\nset status down\nend"
+}
+
+module "automation_action_vpn_up" {
+    source                = "../modules/automation/action"
+
+    # system automation-action
+    action_name           = "ipsecvpn_up"
+    action_type           = "cli-script"
+    delay                 = 5
+    required              = "enable"
+    script                = "config system interface\nedit ipsecvpn\nset status up\nend"
+    accprofile            = "api_super_admin"
+}
+
+module "automation_action_internal1_down" {
+    source                = "../modules/automation/action"
 
     # system automation-action
     action_name           = "internal1_down"
@@ -180,8 +219,64 @@ module "vpn-down-llcf" {
     action_type           = "cli-script"
     required              = "enable"
     script                = "config system interface\nedit internal1\nset status down\nend"
+}
 
+module "automation_action_internal1_up" {
+    source                = "../modules/automation/action"
+
+    # system automation-action
+    action_name           = "internal1_up"
+    action_type           = "cli-script"
+    delay                 = 5
+    required              = "enable"
+    script                = "config system interface\nedit internal1\nset status up\nend"
+    accprofile            = "api_super_admin"
+}
+```
+
+### 8.2 Automation - trigger Module
+
+```
+module "trigger_internal1_down" {
+    source                = "../modules/automation/trigger"
+
+    trigger_name          = "internal1_down"
     # system automation-trigger
+    # logid 20099 = interface status changed
+    event_type            = "event-log"
+    logid                 = "20099"
+    fields                = [
+      {
+        id                  = "1"
+        name                = "msg"
+        value               = "Link monitor: Interface internal1 was turned down"
+      }
+    ]
+}
+
+module "trigger_internal1_up" {
+    source                = "../modules/automation/trigger"
+
+    trigger_name          = "internal1_up"
+    # system automation-trigger
+    # logid 20099 = interface status changed
+    event_type            = "event-log"
+    logid                 = "20099"
+    fields                = [
+      {
+        id                  = "1"
+        name                = "msg"
+        value               = "Link monitor: Interface internal1 was turned up"
+      }
+    ]
+}
+
+module "trigger_ipsecvpn_down" {
+    source                = "../modules/automation/trigger"
+
+    trigger_name          = "ipsecvpn_down"
+    # system automation-trigger
+    # logid 37138 = IPsec connection status changed
     event_type            = "event-log"
     logid                 = "37138"
     fields                = [{
@@ -189,29 +284,14 @@ module "vpn-down-llcf" {
       name                = "action"
       value               = "tunnel-down"
     }]
-
-    # system automation-stitch
-    stitch_name           = "IPsec_VPN_tunnel_down"
-    status                = "enable"
-    trigger               = "IPsec_VPN_tunnel_down"
-    action                = [
-      { name              = "internal1_down" }
-    ]
 }
-```
 
-```
-module "vpn-up-llcf" {
-    source                = "../modules/automation"
+module "trigger_ipsecvpn_up" {
+    source                = "../modules/automation/trigger"
 
-    # system automation-action
-    action_name           = "internal1_up"
-    accprofile            = "api_super_admin"
-    action_type           = "cli-script"
-    required              = "enable"
-    script                = "config system interface\nedit internal1\nset status up\nend"
-
+    trigger_name          = "ipsecvpn_up"
     # system automation-trigger
+    # logid 37138 = IPsec connection status changed
     event_type            = "event-log"
     logid                 = "37138"
     fields                = [{
@@ -219,11 +299,55 @@ module "vpn-up-llcf" {
       name                = "action"
       value               = "tunnel-up"
     }]
+}
+```
+
+### 8.3 Automation - stitch Module
+
+```
+module "stitch_down_internal1-ipsecvpn" {
+    source                = "../modules/automation/stitch"
 
     # system automation-stitch
-    stitch_name           = "IPsec_VPN_tunnel_up"
+    stitch_name           = "ipsecvpn_down"
     status                = "enable"
-    trigger               = "IPsec_VPN_tunnel_up"
+    trigger               = "internal1_down"
+    action                = [
+      { name              = "ipsecvpn_down" }
+    ]
+}
+
+module "stitch_up_internal1-ipsecvpn" {
+    source                = "../modules/automation/stitch"
+
+    # system automation-stitch
+    stitch_name           = "ipsecvpn_up"
+    status                = "enable"
+    trigger               = "internal1_up"
+    action                = [
+      { name              = "ipsecvpn_up" }
+    ]
+}
+
+module "stitch_down_ipsecvpn-internal1" {
+    source                = "../modules/automation/stitch"
+
+    # system automation-stitch
+    stitch_name           = "internal1_down"
+    status                = "enable"
+    trigger               = "ipsecvpn_down"
+    action                = [
+      { name              = "internal1_down" }
+    ]
+}
+
+module "stitch_up_ipsecvpn-internal1" {
+    source                = "../modules/automation/stitch"
+
+    # system automation-stitch
+    stitch_name           = "internal1_up"
+    status                = "enable"
+    trigger               = "ipsecvpn_up"
     action                = [
       { name              = "internal1_up" }
     ]
