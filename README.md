@@ -367,7 +367,7 @@ Log 의 action 필드 값 중 tunnel-down, tunnel-up 만 필터링하여 trigger
 
 <tr><td>
 
-<code>
+```
 
 config system automation-action
    edit "internal1_down"
@@ -408,13 +408,13 @@ end"
     next
 end
 
-</code>
+```
 
 </td></tr>
 
 <tr><td>
 
-<code>
+```
 
 config system automation-trigger
     edit "internal1_down"
@@ -459,13 +459,13 @@ config system automation-trigger
     next
 end
 
-</code>
+```
 
 </td></tr>
 
 <tr><td>
 
-<code>
+```
 
 config system automation-stitch
     edit "internal1_down"
@@ -486,7 +486,7 @@ config system automation-stitch
     next
 end
 
-</code>
+```
 
 </td></tr>
 
