@@ -383,7 +383,7 @@ end
   <th>ipsecvpn</th>
 </tr>
 <tr>
-  <td colspan=4><b>internal1 인터페이스 down trigger 발생 시<b></td>
+  <td colspan=4 style="color:#0000ff"><b>internal1 인터페이스 down trigger 발생 시<b></td>
 </tr>
 <tr>
   <td>down trigger</td>
@@ -428,7 +428,7 @@ end
   <td></td>
 </tr>
 <tr>
-  <td colspan=4><b>ipsecvpn 인터페이스 down trigger 발생 시<b></td>
+  <td colspan=4 style="color:#0000ff"><b>ipsecvpn 인터페이스 down trigger 발생 시<b></td>
 </tr>
 <tr>
   <td></td>
