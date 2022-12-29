@@ -365,3 +365,31 @@ module "stitch_up_ipsecvpn-internal1" {
     ]
 }
 ```
+
+## 9. FortiGate 장비 CLI에서 Log 확인 방법
+
+```
+# execute log filter category
+Available categories:
+ 0: traffic
+ 1: event
+ 2: utm-virus
+ 3: utm-webfilter
+ 4: utm-ips
+ 5: utm-emailfilter
+ 7: utm-anomaly
+ 8: utm-voip
+ 9: utm-dlp
+10: utm-app-ctrl
+12: utm-waf
+15: utm-dns
+16: utm-ssh
+17: utm-ssl
+18: utm-cifs
+19: utm-file-filter
+20: utm-icap
+
+# execute log filter category 1
+
+# execute log display
+```
