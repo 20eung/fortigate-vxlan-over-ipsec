@@ -355,21 +355,21 @@ end
 
 ## 7. LLCF 설정 (2)
 
-internal1 인터페이스가 down되면 이를 감지하여 반대편 장비의 internal1 인터페이스를 down시킵니다.
+* internal1 인터페이스가 down되면 이를 감지하여 반대편 장비의 internal1 인터페이스를 down시킵니다.
 
-FortiOS Event중 Log ID 20099에 해당하는 Interface status changed를 이용합니다.
-
-
-ipsecvpn 인터페이스가 down되면 이를 감지하여 양쪽 장비의 intrnal1 인터페이스를 down시킵니다.
-
-FortiOS Event중 Log ID 37138에 해당하는 IPsec connection status changed를 이용합니다.
-
-Log 의 action 필드 값 중 tunnel-down, tunnel-up 만 필터링하여 trigger를 작성합니다.
+  * FortiOS Event중 Log ID 20099에 해당하는 Interface status changed를 이용합니다.
 
 
-인터페이스 상태가 down에서 up으로 변경되는 trigger를 감지할 수는 있으나 자동화는 비활성화하였습니다.
+* ipsecvpn 인터페이스가 down되면 이를 감지하여 양쪽 장비의 intrnal1 인터페이스를 down시킵니다.
 
-동작 알고리즘은 다음과 같습니다.
+  * FortiOS Event중 Log ID 37138에 해당하는 IPsec connection status changed를 이용합니다.
+
+  * Log 의 action 필드 값 중 tunnel-down, tunnel-up 만 필터링하여 trigger를 작성합니다.
+
+
+* 인터페이스 상태가 down에서 up으로 변경되는 trigger를 감지할 수는 있으나 자동화는 비활성화하였습니다.
+
+* 동작 알고리즘은 다음과 같습니다.
 
 <table>
 <tr>
