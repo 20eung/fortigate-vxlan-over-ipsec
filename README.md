@@ -383,31 +383,31 @@ Log 의 action 필드 값 중 tunnel-down, tunnel-up 만 필터링하여 trigger
   <th>ipsecvpn</th>
 </tr>
 <tr>
-  <td colspan=4>internal1 인터페이스 down trigger 발생 시</td>
+  <td colspan=4><b>internal1 인터페이스 down trigger 발생 시<b></td>
 </tr>
 <tr>
-  <td>down trigger 발생</td>
+  <td>down trigger</td>
   <td></td>
   <td></td>
   <td></td>
 </tr>
 <tr>
   <td></td>
-  <td>down 설정<br>down trigger 발생</td>
+  <td>down 설정<br>down trigger</td>
   <td></td>
   <td></td>
 </tr>
 <tr>
   <td>down 설정</td>
   <td></td>
-  <td>down trigger 발생</td>
+  <td>down trigger</td>
   <td></td>
 </tr>
 <tr>
   <td></td>
   <td></td>
   <td></td>
-  <td>down 설정<br>down trigger 발생</td>
+  <td>down 설정<br>down trigger</td>
 </tr>
 <tr>
   <td></td>
@@ -428,19 +428,19 @@ Log 의 action 필드 값 중 tunnel-down, tunnel-up 만 필터링하여 trigger
   <td></td>
 </tr>
 <tr>
-  <td colspan=4>ipsecvpn 인터페이스 down trigger 발생 시</td>
+  <td colspan=4><b>ipsecvpn 인터페이스 down trigger 발생 시<b></td>
 </tr>
 <tr>
   <td></td>
-  <td>down trigger 발생</td>
-  <td>down trigger 발생</td>
+  <td>down trigger</td>
+  <td>down trigger</td>
   <td></td>
 </tr>
 <tr>
-  <td>down 설정<br>down trigger 발생</td>
+  <td>down 설정<br>down trigger</td>
   <td></td>
   <td></td>
-  <td>down 설정<br>down trigger 발생</td>
+  <td>down 설정<br>down trigger</td>
 </tr>
 <tr>
   <td></td>
