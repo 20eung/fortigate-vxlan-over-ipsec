@@ -355,7 +355,12 @@ end
 
 ## 7. LLCF 설정 (2)
 
-* internal1 인터페이스가  "`{r} markdown_color(text = "down", color = "red") "` down" 되면 이를 감지하여 반대편 장비의 internal1 인터페이스를 `{r} markdown_color(text = "down", color = "red") "` down시킵니다.
+<style>
+red { color: red }
+yellow { color: yellow }
+</style>
+
+* internal1 인터페이스가 <red>down</red> 되면 이를 감지하여 반대편 장비의 internal1 인터페이스를 down시킵니다.
 
   * FortiOS Event중 Log ID 20099에 해당하는 Interface status changed를 이용합니다.
 
