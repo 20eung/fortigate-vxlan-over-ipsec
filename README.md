@@ -1,6 +1,6 @@
 # 포티게이트 장비에서 VxLAN over IPsec 구현(다중 VLAN)
 
-## 구성도
+## <span style="color:red">구성도</span>
 ![Diagram](./img/diagram.png "Diagram")
 
 ## 1. WAN 인터페이스 설정
