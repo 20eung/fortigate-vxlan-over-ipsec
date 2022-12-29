@@ -355,7 +355,7 @@ end
 
 ## 7. LLCF 설정 (2)
 
-* internal1 인터페이스가 (https://via.placeholder.com/15/f03c15/000000?text=+)`down`</span>`되면 이를 감지하여 반대편 장비의 internal1 인터페이스를 down시킵니다.
+* internal1 인터페이스가 ![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+) `down` 되면 이를 감지하여 반대편 장비의 internal1 인터페이스를 down시킵니다.
 
   * FortiOS Event중 Log ID 20099에 해당하는 Interface status changed를 이용합니다.
 
