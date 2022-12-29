@@ -1,6 +1,6 @@
 # 포티게이트 장비에서 VxLAN over IPsec 구현(다중 VLAN)
 
-## <span style="color:red">구성도</span>
+## 구성도
 ![Diagram](./img/diagram.png "Diagram")
 
 ## 1. WAN 인터페이스 설정
@@ -355,7 +355,7 @@ end
 
 ## 7. LLCF 설정 (2)
 
-* internal1 인터페이스가 <span style="color:red">down</span>되면 이를 감지하여 반대편 장비의 internal1 인터페이스를 <span style="color:red">down</span>시킵니다.
+* internal1 인터페이스가 <span style="color:#f03c15">down</span>되면 이를 감지하여 반대편 장비의 internal1 인터페이스를 <font color="#f03c15">down</font>시킵니다.
 
   * FortiOS Event중 Log ID 20099에 해당하는 Interface status changed를 이용합니다.
 
