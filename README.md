@@ -355,12 +355,8 @@ end
 
 ## 7. LLCF 설정 (2)
 
-<style>
-red { color: red }
-yellow { color: yellow }
-</style>
 
-* internal1 인터페이스가 <red>down</red> 되면 이를 감지하여 반대편 장비의 internal1 인터페이스를 down시킵니다.
+* internal1 인터페이스가 down 되면 이를 감지하여 반대편 장비의 internal1 인터페이스를 down시킵니다.
 
   * FortiOS Event중 Log ID 20099에 해당하는 Interface status changed를 이용합니다.
 
@@ -388,7 +384,7 @@ yellow { color: yellow }
   <th>ipsecvpn</th>
 </tr>
 <tr>
-  <td colspan=4 style="color:#0000ff"><b>internal1 인터페이스 down trigger 발생 시<b></td>
+  <td colspan=4<b>internal1 인터페이스 down trigger 발생 시<b></td>
 </tr>
 <tr>
   <td>down trigger</td>
@@ -403,7 +399,7 @@ yellow { color: yellow }
   <td></td>
 </tr>
 <tr>
-  <td><font color="red">down</font> 설정</td>
+  <td>down 설정</td>
   <td></td>
   <td>down trigger</td>
   <td></td>
@@ -412,7 +408,7 @@ yellow { color: yellow }
   <td></td>
   <td></td>
   <td></td>
-  <td><font color="red">down</font> 설정<br>down trigger</td>
+  <td>down 설정<br>down trigger</td>
 </tr>
 <tr>
   <td></td>
@@ -422,18 +418,18 @@ yellow { color: yellow }
 </tr>
 <tr>
   <td></td>
-  <td>60초 후 <font color="blue">up</font> 설정</td>
+  <td>60초 후 up 설정</td>
   <td></td>
   <td></td>
 </tr>
 <tr>
   <td></td>
   <td></td>
-  <td>60초 후 <font color="blue">up</font> 설정</td>
+  <td>60초 후 up 설정</td>
   <td></td>
 </tr>
 <tr>
-  <td colspan=4 style="color:#0000ff"><b>ipsecvpn 인터페이스 down trigger 발생 시<b></td>
+  <td colspan=4><b>ipsecvpn 인터페이스 down trigger 발생 시<b></td>
 </tr>
 <tr>
   <td></td>
@@ -442,10 +438,10 @@ yellow { color: yellow }
   <td></td>
 </tr>
 <tr>
-  <td><span style="color:red">down</span> 설정<br>down trigger</td>
+  <td>down 설정<br>down trigger</td>
   <td></td>
   <td></td>
-  <td><font color="red">down</font> 설정<br>down trigger</td>
+  <td>down 설정<br>down trigger</td>
 </tr>
 <tr>
   <td></td>
@@ -455,8 +451,8 @@ yellow { color: yellow }
 </tr>
 <tr>
   <td></td>
-  <td>60초 후 <font color="blue">up</font> 설정</td>
-  <td>60초 후 <font color="blue">up</font> 설정</td>
+  <td>60초 후 up 설정</td>
+  <td>60초 후 up 설정</td>
   <td></td>
 </tr>
 </table>
