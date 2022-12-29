@@ -383,7 +383,7 @@ end
   <th>ipsecvpn</th>
 </tr>
 <tr>
-  <td colspan=4><b>internal1 인터페이스 down trigger 발생 시<b></td>
+  <td colspan=4><center><b>internal1 인터페이스 down trigger 발생 시<b></center></td>
 </tr>
 <tr>
   <td>down trigger</td>
@@ -398,7 +398,7 @@ end
   <td></td>
 </tr>
 <tr>
-  <td>down 설정</td>
+  <td><font color="red">down</font> 설정</td>
   <td></td>
   <td>down trigger</td>
   <td></td>
@@ -407,7 +407,7 @@ end
   <td></td>
   <td></td>
   <td></td>
-  <td>down 설정<br>down trigger</td>
+  <td><font color="red">down</font> 설정<br>down trigger</td>
 </tr>
 <tr>
   <td></td>
@@ -417,18 +417,18 @@ end
 </tr>
 <tr>
   <td></td>
-  <td>60초 후 up 설정</td>
+  <td>60초 후 <font color="blue">up</font> 설정</td>
   <td></td>
   <td></td>
 </tr>
 <tr>
   <td></td>
   <td></td>
-  <td>60초 후 up 설정</td>
+  <td>60초 후 <font color="blue">up</font> 설정</td>
   <td></td>
 </tr>
 <tr>
-  <td colspan=4><b>ipsecvpn 인터페이스 down trigger 발생 시<b></td>
+  <td colspan=4><center><b>ipsecvpn 인터페이스 down trigger 발생 시<b></center></td>
 </tr>
 <tr>
   <td></td>
@@ -437,10 +437,10 @@ end
   <td></td>
 </tr>
 <tr>
-  <td>down 설정<br>down trigger</td>
+  <td><font color="red">down</font> 설정<br>down trigger</td>
   <td></td>
   <td></td>
-  <td>down 설정<br>down trigger</td>
+  <td><font color="red">down</font> 설정<br>down trigger</td>
 </tr>
 <tr>
   <td></td>
@@ -450,8 +450,8 @@ end
 </tr>
 <tr>
   <td></td>
-  <td>60초 후 up 설정</td>
-  <td>60초 후 up 설정</td>
+  <td>60초 후 <font color="blue">up</font> 설정</td>
+  <td>60초 후 <font color="blue">up</font> 설정</td>
   <td></td>
 </tr>
 </table>
