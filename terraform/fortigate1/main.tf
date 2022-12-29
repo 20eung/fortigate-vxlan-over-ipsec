@@ -131,29 +131,6 @@ module "llcf_wan2" {
 }
 */
 
-module "automation_action_vpn_down" {
-    source                = "../modules/automation/action"
-
-    # system automation-action
-    action_name           = "ipsecvpn_down"
-    accprofile            = "api_super_admin"
-    action_type           = "cli-script"
-    required              = "enable"
-    script                = "config system interface\nedit ipsecvpn\nset status down\nend"
-}
-
-module "automation_action_vpn_up" {
-    source                = "../modules/automation/action"
-
-    # system automation-action
-    action_name           = "ipsecvpn_up"
-    action_type           = "cli-script"
-    delay                 = 5
-    required              = "enable"
-    script                = "config system interface\nedit ipsecvpn\nset status up\nend"
-    accprofile            = "api_super_admin"
-}
-
 module "automation_action_internal1_down" {
     source                = "../modules/automation/action"
 
@@ -171,9 +148,32 @@ module "automation_action_internal1_up" {
     # system automation-action
     action_name           = "internal1_up"
     action_type           = "cli-script"
-    delay                 = 5
+    delay                 = 30
     required              = "enable"
     script                = "config system interface\nedit internal1\nset status up\nend"
+    accprofile            = "api_super_admin"
+}
+
+module "automation_action_vpn_down" {
+    source                = "../modules/automation/action"
+
+    # system automation-action
+    action_name           = "ipsecvpn_down"
+    accprofile            = "api_super_admin"
+    action_type           = "cli-script"
+    required              = "enable"
+    script                = "config system interface\nedit ipsecvpn\nset status down\nend"
+}
+
+module "automation_action_vpn_up" {
+    source                = "../modules/automation/action"
+
+    # system automation-action
+    action_name           = "ipsecvpn_up"
+    action_type           = "cli-script"
+    delay                 = 60
+    required              = "enable"
+    script                = "config system interface\nedit ipsecvpn\nset status up\nend"
     accprofile            = "api_super_admin"
 }
 
@@ -245,11 +245,12 @@ module "stitch_down_internal1-ipsecvpn" {
     source                = "../modules/automation/stitch"
 
     # system automation-stitch
-    stitch_name           = "ipsecvpn_down"
+    stitch_name           = "ipsecvpn_down_up"
     status                = "enable"
     trigger               = "internal1_down"
     action                = [
-      { name              = "ipsecvpn_down" }
+      { name              = "ipsecvpn_down" },
+      { name              = "ipsecvpn_up" }
     ]
 }
 
@@ -258,7 +259,7 @@ module "stitch_up_internal1-ipsecvpn" {
 
     # system automation-stitch
     stitch_name           = "ipsecvpn_up"
-    status                = "enable"
+    status                = "disable"
     trigger               = "internal1_up"
     action                = [
       { name              = "ipsecvpn_up" }
@@ -282,7 +283,7 @@ module "stitch_up_ipsecvpn-internal1" {
 
     # system automation-stitch
     stitch_name           = "internal1_up"
-    status                = "enable"
+    status                = "disable"
     trigger               = "ipsecvpn_up"
     action                = [
       { name              = "internal1_up" }

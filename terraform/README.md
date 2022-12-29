@@ -204,7 +204,7 @@ module "automation_action_vpn_up" {
     # system automation-action
     action_name           = "ipsecvpn_up"
     action_type           = "cli-script"
-    delay                 = 5
+    delay                 = 60
     required              = "enable"
     script                = "config system interface\nedit ipsecvpn\nset status up\nend"
     accprofile            = "api_super_admin"
@@ -227,7 +227,7 @@ module "automation_action_internal1_up" {
     # system automation-action
     action_name           = "internal1_up"
     action_type           = "cli-script"
-    delay                 = 5
+    delay                 = 60
     required              = "enable"
     script                = "config system interface\nedit internal1\nset status up\nend"
     accprofile            = "api_super_admin"
@@ -304,6 +304,17 @@ module "trigger_ipsecvpn_up" {
 
 ### 8.3 Automation - stitch Module
 
+internal1 인터페이스 down 발생 시 ipsecvpn 인터페이스를 강제로 down 시키고,   
+반대편 장비의 ipsecvpn 인터페이스가 다운되면서   
+반대편 장비의 internal1 인터페이스를 강제로 down 시킵니다.   
+60초 후에 ipsecvpn 인터페이스는 강제로 up으로 전환시켜서   
+결과적으로 양쪽 장비의 internal1 인터페이스만 down 상태가 됩니다.   
+
+ipsecvpn 인터페이스 down 발생 시 양쪽 장비의 internal1 인터페이스를 강제로 down 시키고,   
+innternal1 인터페이스 down trigger에 의해 ipsecvpn 인터페이스가 강제로 down 됩니다.   
+60초 후에 ipsecvpn 인터페이스는 강제로 up으로 전환시켜서 대기상태가 되고,   
+결과적으로 양쪽 장비의 internal1 인터페이스만 down 상태가 됩니다.   
+
 ```
 module "stitch_down_internal1-ipsecvpn" {
     source                = "../modules/automation/stitch"
@@ -313,7 +324,8 @@ module "stitch_down_internal1-ipsecvpn" {
     status                = "enable"
     trigger               = "internal1_down"
     action                = [
-      { name              = "ipsecvpn_down" }
+      { name              = "ipsecvpn_down" },
+      { name              = "ipsecvpn_up" }
     ]
 }
 
@@ -322,7 +334,7 @@ module "stitch_up_internal1-ipsecvpn" {
 
     # system automation-stitch
     stitch_name           = "ipsecvpn_up"
-    status                = "enable"
+    status                = "disable"
     trigger               = "internal1_up"
     action                = [
       { name              = "ipsecvpn_up" }
@@ -346,7 +358,7 @@ module "stitch_up_ipsecvpn-internal1" {
 
     # system automation-stitch
     stitch_name           = "internal1_up"
-    status                = "enable"
+    status                = "disable"
     trigger               = "ipsecvpn_up"
     action                = [
       { name              = "internal1_up" }
