@@ -437,7 +437,7 @@ end
   <td></td>
 </tr>
 <tr>
-  <td><font color="red">down</font> 설정<br>down trigger</td>
+  <td><span style="color:red">down</span> 설정<br>down trigger</td>
   <td></td>
   <td></td>
   <td><font color="red">down</font> 설정<br>down trigger</td>
