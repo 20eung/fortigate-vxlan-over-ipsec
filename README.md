@@ -78,10 +78,10 @@ end
 config system interface
   edit "ipsecvpn"
     set vdom "root"
-    set ip 2.2.1.2 255.255.255.255
+    set ip 2.2.1.1 255.255.255.255
     set allowaccess ping
     set type tunnel
-    set remote-ip 2.2.1.1 255.255.255.252
+    set remote-ip 2.2.1.2 255.255.255.252
     set interface "wan1"
   next
 end
@@ -113,10 +113,10 @@ end
 config system interface
   edit "ipsecvpn"
     set vdom "root"
-    set ip 2.2.1.1 255.255.255.255
+    set ip 2.2.1.2 255.255.255.255
     set allowaccess ping
     set type tunnel
-    set remote-ip 2.2.1.2 255.255.255.252
+    set remote-ip 2.2.1.1 255.255.255.252
     set interface "wan1"
   next
 end
