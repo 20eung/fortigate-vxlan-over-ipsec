@@ -57,7 +57,7 @@ end
 
 ```
 config vpn ipsec phase1-interface
-  edit "fg1-vpn"
+  edit "ipsecvpn"
     set interface "wan1"
     set peertype any
     set net-device disable
@@ -68,20 +68,20 @@ config vpn ipsec phase1-interface
 end
 
 config vpn ipsec phase2-interface
-  edit "fg1-vpn"
-    set phase1name "fg1-vpn"
+  edit "ipsecvpn"
+    set phase1name "ipsecvpn"
     set proposal aes256-sha1
     set auto-negotiate enable
   next
 end
 
 config system interface
-  edit "fg1-vpn"
+  edit "ipsecvpn"
     set vdom "root"
-    set ip 2.2.2.2 255.255.255.255
+    set ip 2.2.1.2 255.255.255.255
     set allowaccess ping
     set type tunnel
-    set remote-ip 2.2.2.1 255.255.255.252
+    set remote-ip 2.2.1.1 255.255.255.252
     set interface "wan1"
   next
 end
@@ -92,7 +92,7 @@ end
 
 ```
 config vpn ipsec phase1-interface
-  edit "fg2-vpn"
+  edit "ipsecvpn"
     set interface "wan1"
     set peertype any
     set net-device disable
@@ -103,20 +103,20 @@ config vpn ipsec phase1-interface
 end
 
 config vpn ipsec phase2-interface
-  edit "fg2-vpn"
-    set phase1name "fg2-vpn"
+  edit "ipsecvpn"
+    set phase1name "ipsecvpn"
     set proposal aes256-sha1
     set auto-negotiate enable
   next
 end
 
 config system interface
-  edit "fg2-vpn"
+  edit "ipsecvpn"
     set vdom "root"
-    set ip 2.2.2.1 255.255.255.255
+    set ip 2.2.1.1 255.255.255.255
     set allowaccess ping
     set type tunnel
-    set remote-ip 2.2.2.2 255.255.255.252
+    set remote-ip 2.2.1.2 255.255.255.252
     set interface "wan1"
   next
 end
@@ -198,14 +198,14 @@ end
 ```
 config system vxlan
   edit "vxlan.10"
-    set interface "fg1-vpn"
+    set interface "ipsecvpn"
     set vni 10
-    set remote-ip "2.2.2.1"
+    set remote-ip "2.2.1.2"
   next
   edit "vxlan.20"
-    set interface "fg1-vpn"
+    set interface "ipsecvpn"
     set vni 20
-    set remote-ip "2.2.2.1"
+    set remote-ip "2.2.1.2"
   next
 end
 ```
@@ -216,14 +216,14 @@ end
 ```
 config system vxlan
   edit "vxlan.10"
-    set interface "fg2-vpn"
+    set interface "ipsecvpn"
     set vni 10
-    set remote-ip "2.2.2.2"
+    set remote-ip "2.2.1.1"
   next
   edit "vxlan.20"
-    set interface "fg2-vpn"
+    set interface "ipsecvpn"
     set vni 20
-    set remote-ip "2.2.2.2"
+    set remote-ip "2.2.1.1"
   next
 end
 ```
